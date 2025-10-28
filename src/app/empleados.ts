@@ -1,16 +1,16 @@
 import { Component, OnInit } from '@angular/core';
-import { EmpleadosService } from '../empleados.service';
+import { EmpleadosService } from './empleados.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
-@Component({
+@Component({  
   selector: 'app-empleados',
   standalone: true,
-  imports: [CommonModule, FormsModule],  // ESTO ES OBLIGATORIO
-  templateUrl: './empleados.html',
-  styleUrl: './empleados.css'
+  imports: [CommonModule, FormsModule],
+  templateUrl: './empleados/empleados.html',
+  styleUrl: './empleados/empleados.css'
 })
-export class Empleados implements OnInit {
+export class EmpleadosComponent implements OnInit {
   empleados: any[] = [];
   nuevoEmpleado = { nombre: '', apellido: '', correo: '', salario: 0 };
 

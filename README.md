@@ -1,59 +1,71 @@
-# FrontendAngular
+# Frontend Angular - Examen 2
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.3.4.
+## Descripción
+Aplicación Angular (versión 20.3.4) que consume una API REST en Laravel para mostrar una tabla de empleados y permitir la inserción de nuevos registros mediante un formulario. 
+Utiliza componentes standalone, HttpClient, FormsModule y CommonModule.
 
-## Development server
+## Requisitos
+- Node.js 22.15.1
+- Angular CLI 20.3.4
+- zone.js (incluido en dependencias)
 
-To start a local development server, run:
+## Estructura de archivos clave
+src/
+├── app/
+│   ├── app.ts              → Componente raíz (AppComponent)
+│   ├── app.html            → Plantilla raíz: <app-empleados></app-empleados>
+│   ├── app.config.ts       → Configuración global: provideHttpClient()
+│   ├── empleados.service.ts → Servicio para consumir API (GET/POST)
+│   └── empleados/
+│       ├── empleados.ts    → Componente standalone: lógica de lista y formulario
+│       ├── empleados.html  → Tabla con *ngFor + formulario con ngModel
+│       └── empleados.css   → Estilos básicos (opcional)
+├── main.ts                 → Importa 'zone.js' y bootstrap de la app
+└── angular.json            → Configuración de build con polyfills: ["zone.js"]
 
-```bash
-ng serve
-```
+## Instalación
+1. Clona el repositorio:
+   git clone https://github.com/vallejosroberto-uab/VallejosRoberto-FontendExamen2.git
+2. Entra al directorio:
+   cd VallejosRoberto-FontendExamen2
+3. Instala dependencias:
+   npm install
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+## Ejecución
+1. Asegúrate de que el backend Laravel esté corriendo:
+   php artisan serve
+   → Accesible en: http://127.0.0.1:8000/api/empleados
+2. Inicia el frontend Angular:
+   ng serve
+3. Abre el navegador en:
+   http://localhost:4200
 
-## Code scaffolding
+## Funcionalidades
+- Muestra lista de empleados obtenida desde el backend (10 registros iniciales por seeder).
+- Formulario para crear nuevos empleados con validación básica (required).
+- Comunicación con API Laravel mediante HttpClient.
+- Uso de *ngFor, ngModel, (ngSubmit), standalone components.
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+## Comandos Git (historial recomendado)
+git add .
+git commit -m "feat(web): vista tabla + formulario insertar empleados"
+git push origin dev
+git checkout main
+git merge dev -m "merge: integrar dev en master para versión final"
+git push origin main
 
-```bash
-ng generate component component-name
-```
+## Notas importantes
+- El proyecto usa Vite como servidor de desarrollo (ng serve).
+- zone.js debe estar importado en main.ts y listado en polyfills de angular.json (solo en build.options).
+- No se usan módulos NgModule, todo es standalone.
+- Los errores comunes (ngModel, *ngFor, Zone.js) se resuelven con:
+  → imports: [CommonModule, FormsModule] en el componente standalone
+  → import 'zone.js'; en main.ts
+  → "polyfills": ["zone.js"] en build.options de angular.json
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
-
-```bash
+## Entrega
+El proyecto está listo para producción. Compila con:
 ng build
-```
+Los archivos generados estarán en dist/.
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+¡Listo para evaluar!
